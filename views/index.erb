@@ -2,8 +2,10 @@
 
 Create New Link
 <%= form('/', :post) %>
-<%= input(:link) %>
-<%= input(:target) %>
+<% fieldset(:link) do |f| %>
+  <%= f.input(:link) %>
+  <%= f.input(:target) %>
+<% end %>
 <%= submit %>
 
 Current Links

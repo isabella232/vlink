@@ -8,7 +8,7 @@ VLINK_HASH_KEY = 'vlink'
 
 helpers do
   def get_link(link)
-    return settings.redis.hget(link)
+    return settings.redis.hget(VLINK_HASH_KEY, link)
   end
 
   def get_links()
@@ -43,10 +43,10 @@ end
 # be unique, i.e. there can only be one http://vlink/foo
 post ('/') do
   request.body.rewind
-  binding.pry
-  data = JSON.parse request.body.read
+  #binding.pry
+  data = request.POST['link']
   #binding.pry
   # if link already exists, redirect to '/' with error message
   create_link(data['link'], data['target'])
-  status 201
+  redirect to('/') if status 201
 end
