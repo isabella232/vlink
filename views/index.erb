@@ -1,0 +1,13 @@
+<h1>Welcome to vLink</h1>
+
+Current Links
+<table>
+  <th>vlink</th>
+  <th>Destination</th>
+  <% @links.each do |link, target| %>
+    <tr>
+    <td><%= link %></td>
+    <td><%= "<a href=\"#{target}\">#{target}</a>" %></td>
+    </tr>
+  <% end %>
+</table>
