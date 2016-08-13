@@ -1,5 +1,11 @@
 <h1>Welcome to vLink</h1>
 
+Create New Link
+<%= form('/', :post) %>
+<%= input(:link) %>
+<%= input(:target) %>
+<%= submit %>
+
 Current Links
 <table>
   <th>vlink</th>
@@ -7,7 +13,7 @@ Current Links
   <% @links.each do |link, target| %>
     <tr>
     <td><%= link %></td>
-    <td><%= "<a href=\"#{target}\">#{target}</a>" %></td>
+    <td><%= "<a href=#{target}>#{target}</a>" %></td>
     </tr>
   <% end %>
 </table>

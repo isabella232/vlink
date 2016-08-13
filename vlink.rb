@@ -2,6 +2,7 @@ require 'json'
 require 'pry'
 require 'redis'
 require 'sinatra'
+require 'sinatra/form_helpers'
 
 VLINK_HASH_KEY = 'vlink'
 
@@ -24,8 +25,6 @@ configure do
 end
 
 get ('/') do
-  # TODO(tjb): implement page that shows user their existing links
-  # and allows them to create new links
   @links = get_links()
   erb :index
 end
@@ -44,6 +43,7 @@ end
 # be unique, i.e. there can only be one http://vlink/foo
 post ('/') do
   request.body.rewind
+  binding.pry
   data = JSON.parse request.body.read
   #binding.pry
   # if link already exists, redirect to '/' with error message
