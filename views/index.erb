@@ -1,5 +1,13 @@
 <h1>Welcome to vLink</h1>
 
+<div>
+  <% if !@error.nil? %>
+    <li><%= error %></li>
+  <% end %>
+</div>
+
+
+<div>
 Create New Link
 <%= form('/', :post) %>
 <% fieldset(:link) do |f| %>
@@ -7,7 +15,9 @@ Create New Link
   <%= f.input(:target) %>
 <% end %>
 <%= submit %>
+</div>
 
+<div>
 Current Links
 <table>
   <th>vlink</th>
@@ -19,3 +29,4 @@ Current Links
     </tr>
   <% end %>
 </table>
+</div>

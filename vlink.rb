@@ -6,6 +6,25 @@ require 'sinatra/form_helpers'
 
 VLINK_HASH_KEY = 'vlink'
 
+class Link
+  def initialize(link, target)
+    @link = link
+    @target = target
+    @owners = []
+  end
+
+  def to_json
+    {"#{@link}": "#{@target}"}.to_json
+  end
+
+  def to_s
+    {"#{@link}": {"target": "#{@target}", "owners": "#{@owners}"}}.to_s
+  end
+
+  def validate()
+  end
+end
+
 helpers do
   def get_link(link)
     return settings.redis.hget(VLINK_HASH_KEY, link)
@@ -25,6 +44,7 @@ configure do
 end
 
 get ('/') do
+  @error = params['error'] if !params['error'].nil?
   @links = get_links()
   erb :index
 end
@@ -36,6 +56,10 @@ get ('/:link') do
   status 404
 end
 
+get ('/error') do
+  erb :error
+end
+
 # TODO(tjb): this method needs to save keys in a separate namespace per user.
 # User A should be able to have a link named 'foo' that points to
 # 'www.google.com', while user B should be able to have a link named 'bar'
@@ -43,10 +67,12 @@ end
 # be unique, i.e. there can only be one http://vlink/foo
 post ('/') do
   request.body.rewind
-  #binding.pry
   data = request.POST['link']
-  #binding.pry
-  # if link already exists, redirect to '/' with error message
+  site = get_link(data['link'])
+  if !site.nil?
+    @error = ["#{data['link']} is already linked to #{site}"]
+    redirect to ("/?error=@error")
+  end
   create_link(data['link'], data['target'])
   redirect to('/') if status 201
 end
