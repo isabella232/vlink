@@ -13,8 +13,8 @@ class Link
     @owners = []
   end
 
-  def to_json
-    {"#{@link}": "#{@target}"}.to_json
+  def to_json(*a)
+    {"#{@link}": {"target": "#{@target}", "owners": "#{@owners}"}}.to_json(*a)
   end
 
   def to_s
