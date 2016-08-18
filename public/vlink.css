@@ -18,3 +18,8 @@
 .lTableBody {
   display: table-row-group;
 }
+
+.error {
+  font-weight: bold;
+  color: red;
+}

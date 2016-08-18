@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
   <link rel="stylesheet" href="/vlink.css" />
   <title>vLink</title>
 </head>
 
 <h1>Welcome to vLink</h1>
 
-<div class="error">
-  <% if flash[:errors] %>
-    <%= flash[:errors] %>
-  <% end %>
-</div>
+<% if flash[:errors] %>
+  <div class="error">
+    <%= "ERRORS: #{flash[:errors]}" %>
+  </div>
+<% end %>
 
-Create New Link
 <div>
+<h2>Create New Link</h2>
 <%= form('/', :post) %>
 <% fieldset(:link) do |f| %>
   <%= f.input(:name) %>
@@ -23,17 +24,20 @@ Create New Link
 <%= submit %>
 </div>
 
-<div class="link_list">
+<div>
 <h2>Current Links</h2>
-<div class="lTable">
-<div class="lRow">
-  <div class="lTableHead">vlink</div>
-  <div class="lTableHead">Destination</div>
+<table class="pure-table pure-table-horizontal">
+<thead>
+  <tr>
+    <th>vlink</th>
+    <th>Destination</th>
+  </tr>
+</thead>
   <% @links.each do |link| %>
-    <div class="lRow">
-      <div class="lTableCell"><%= link.name %> </div>
-      <div class="lTableCell"><%= "<a href=#{link.target}>#{link.target}</a>" %></div>
-    </div>
+    <tr>
+      <td><%= link.name %> </td>
+      <td><%= "<a href=#{link.target}>#{link.target}</a>" %></td>
+    </tr>
   <% end %>
-</div>
+</table>
 </div>
