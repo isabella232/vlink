@@ -22,10 +22,10 @@ Current Links
 <table>
   <th>vlink</th>
   <th>Destination</th>
-  <% @links.each do |link, target| %>
+  <% @links.each do |link| %>
     <tr>
-    <td><%= link %></td>
-    <td><%= "<a href=#{target}>#{target}</a>" %></td>
+    <td><%= link.link %></td>
+    <td><%= "<a href=#{link.target}>#{link.target}</a>" %></td>
     </tr>
   <% end %>
 </table>
