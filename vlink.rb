@@ -5,6 +5,7 @@ require 'pg'
 class Link
   include DataMapper::Resource
 
-  property :link, String, :key => true
+  property :id, Serial
+  property :name, String, :required => true, :unique => true
   property :target, URI, :required => true
 end

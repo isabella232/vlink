@@ -1,32 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="/vlink.css" />
+  <title>vLink</title>
+</head>
+
 <h1>Welcome to vLink</h1>
 
-<div>
-  <% if !@error.nil? %>
-    <li><%= error %></li>
+<div class="error">
+  <% if flash[:errors] %>
+    <%= flash[:errors] %>
   <% end %>
 </div>
 
-
-<div>
 Create New Link
+<div>
 <%= form('/', :post) %>
 <% fieldset(:link) do |f| %>
-  <%= f.input(:link) %>
+  <%= f.input(:name) %>
   <%= f.input(:target) %>
 <% end %>
 <%= submit %>
 </div>
 
-<div>
-Current Links
-<table>
-  <th>vlink</th>
-  <th>Destination</th>
+<div class="link_list">
+<h2>Current Links</h2>
+<div class="lTable">
+<div class="lRow">
+  <div class="lTableHead">vlink</div>
+  <div class="lTableHead">Destination</div>
   <% @links.each do |link| %>
-    <tr>
-    <td><%= link.link %></td>
-    <td><%= "<a href=#{link.target}>#{link.target}</a>" %></td>
-    </tr>
+    <div class="lRow">
+      <div class="lTableCell"><%= link.name %> </div>
+      <div class="lTableCell"><%= "<a href=#{link.target}>#{link.target}</a>" %></div>
+    </div>
   <% end %>
-</table>
+</div>
 </div>
