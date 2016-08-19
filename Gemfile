@@ -1,8 +1,9 @@
 source 'https://rubygems.org'
 require 'rubygems'
 
-gem 'pry'
 gem 'pg'
+gem 'pry'
+gem 'puma'
 gem 'data_mapper'
 gem 'dm-postgres-adapter'
 gem 'json'

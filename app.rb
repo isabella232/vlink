@@ -8,13 +8,15 @@ require_relative 'vlink'
 
 enable :sessions
 
-database_url = ENV['DATABASE_URL']
+database_url = ENV['DATABASE_URL'] || 'postgres://localhost/vlink'
 DataMapper.setup(:default, database_url)
 DataMapper.finalize
 Link.auto_upgrade!
 
 configure do
+  set :server, :puma
   set :port, 8080
+  set :environment, :production
 end
 
 get ('/') do
