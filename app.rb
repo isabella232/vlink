@@ -30,6 +30,12 @@ get ('/:link') do
   redirect to(link.target.to_s)
 end
 
+get ('/search/:name') do
+  binding.pry
+  @links = Link.all(:name.like => '%params["name"]%')
+  erb :search
+end
+
 post ('/') do
   data = request.POST['link']
   @link = Link.new(data)
