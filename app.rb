@@ -30,9 +30,8 @@ get ('/:link') do
   redirect to(link.target.to_s)
 end
 
-get ('/search/:name') do
-  binding.pry
-  @links = Link.all(:name.like => '%params["name"]%')
+get ('/search/:query') do
+  @links = Link.all(:name.like => "%#{params['query']}%")
   erb :search
 end
 
