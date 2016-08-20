@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="/pure-min.css" />
+  <link rel="stylesheet" href="/vlink.css" />
+  <title>vLink Search Results</title>
+</head>
+
+<body>
+<div>
+<h1>vLink - Create simple, easy-to-remember links</h1>
+</div>
+
+<% if flash[:errors] %>
+  <div class="error">
+    <%= "ERRORS: #{flash[:errors]}" %>
+  </div>
+<% end %>
+
+<div>
+<h2>Create New Link</h2>
+<%= form('/', :post) %>
+<% fieldset(:link) do |f| %>
+  <%= f.input(:name) %>
+  <%= f.input(:target) %>
+<% end %>
+<%= submit %>
+</div>
+
+<div>
+<h2>Search Results</h2>
+<table class="pure-table pure-table-horizontal">
+<thead>
+  <tr>
+    <th>vlink</th>
+    <th>Destination</th>
+  </tr>
+</thead>
+  <% @links.each do |link| %>
+    <tr>
+      <td><%= link.name %> </td>
+      <td><%= "<a href=#{link.target}>#{link.target}</a>" %></td>
+    </tr>
+  <% end %>
+</table>
+</div>
+</body>
+</div>
