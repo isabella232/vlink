@@ -40,7 +40,6 @@ end
 post ('/') do
   data = request.POST['link']
   @link = Link.new(data)
-  @link.used = 0
   @link.save
   if !@link.saved?
     errors = ''
