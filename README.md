@@ -30,7 +30,7 @@ vLink runs on Flynn. To deploy it, follow these steps.
 
 ## Step 1 Check out the source code
 ```
-> git clone 
+> git clone https://github.com/Vestorly/vlink.git
 ```
 
 ## Step 2 Push
