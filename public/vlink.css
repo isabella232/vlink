@@ -1,9 +1,4 @@
-html, body {
-    height: 100%;
-}
-body {
-  margin: 10;
-}
 .error {
-  background-color: red;
+  color: red;
+  font-weight: bold;
 }

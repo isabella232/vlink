@@ -47,8 +47,10 @@ post ('/') do
       errors << "<div>#{error}</div>\n"
     end
   end
-  flash[:errors] = errors if !@link.saved?
-  flash[:name] = @link.name
-  flash[:target] = @link.target
+  if !@link.saved?
+    flash[:errors] = errors
+    flash[:name] = @link.name
+    flash[:target] = @link.target
+  end
   redirect to('/')
 end
