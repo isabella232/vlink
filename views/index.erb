@@ -2,13 +2,15 @@
 <html lang="en">
 <head>
   <link rel="stylesheet" href="/pure-min.css" />
+  <link rel="stylesheet" href="skeleton.css"
   <link rel="stylesheet" href="/vlink.css" />
   <title>vLink</title>
 </head>
 
 <body>
+<div class="container">
 <div>
-<h1>vLink - Create simple, easy-to-remember links</h1>
+<h2><strong>vLink - Create simple, easy-to-remember links</strong></h2>
 </div>
 
 <% if flash[:errors] %>
@@ -18,7 +20,7 @@
 <% end %>
 
 <div>
-<h2>Create New Link</h2>
+<h3>Create New Link</h3>
 <%= form('/', :post) %>
 <% fieldset(:link) do |f| %>
   <%= f.input(:name) %>
@@ -28,12 +30,12 @@
 </div>
 
 <div>
-<h2>Current Links</h2>
-<table class="pure-table pure-table-horizontal">
+<h3>Current Links</h3>
+<table class="u-full-width">
 <thead>
   <tr>
-    <th>vlink</th>
-    <th>Destination</th>
+    <th>Name</th>
+    <th>Target</th>
   </tr>
 </thead>
   <% @links.each do |link| %>
