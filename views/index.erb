@@ -23,8 +23,8 @@
 <h3>Create New Link</h3>
 <%= form('/', :post) %>
 <% fieldset(:link) do |f| %>
-  <%= f.input(:name) %>
-  <%= f.input(:target) %>
+  <%= f.input(:name, {:value => flash[:name]}) %>
+  <%= f.input(:target, {:value => flash[:target]}) %>
 <% end %>
 <%= submit %>
 </div>

@@ -48,5 +48,7 @@ post ('/') do
     end
   end
   flash[:errors] = errors if !@link.saved?
+  flash[:name] = @link.name
+  flash[:target] = @link.target
   redirect to('/')
 end
