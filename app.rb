@@ -17,7 +17,7 @@ configure do
   set :server, :puma
   set :port, 8080
   set :environment, :production
-  set :static_cache_control, [:public, max_age: 60 * 60 * 24 * 365]
+  set :static_cache_control, [:public, max_age: 60 * 60 * 24 * 7]
 end
 
 get ('/') do
@@ -47,8 +47,6 @@ post ('/') do
     @link.errors.full_messages.each do |error|
       errors << "<div>#{error}</div>\n"
     end
-  end
-  if !@link.saved?
     flash[:errors] = errors
     flash[:name] = @link.name
     flash[:target] = @link.target
