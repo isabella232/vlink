@@ -17,6 +17,7 @@ configure do
   set :server, :puma
   set :port, 8080
   set :environment, :production
+  set :static_cache_control, [:public, max_age: 60 * 60 * 24 * 365]
 end
 
 get ('/') do
