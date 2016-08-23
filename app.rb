@@ -22,6 +22,10 @@ end
 
 get ('/') do
   @links = Link.all(:order => [ :name ])
+  @error_messages = session[:error_messages]
+  @link_name = session[:link_name]
+  @link_target = session[:link_target]
+  session[:error_messages] = session[:link_name] = session[:link_target] = nil
   erb :index
 end
 
@@ -47,9 +51,9 @@ post ('/') do
     @link.errors.full_messages.each do |error|
       errors << "<div>#{error}</div>\n"
     end
-    flash[:errors] = errors
-    flash[:name] = @link.name
-    flash[:target] = @link.target
+    session[:error_messages] = errors
+    session[:link_name] = @link.name
+    session[:link_target] = @link.target.to_s
   end
-  redirect to('/')
+  redirect :'/'
 end

@@ -11,9 +11,9 @@
 <h2><strong>vLink - Create simple, easy-to-remember links</strong></h2>
 </div>
 
-<% if flash[:errors] %>
+<% if !@error_messages.nil? %>
   <div class="error">
-    <%= "ERRORS: #{flash[:errors]}" %>
+    <%= "ERRORS: #{@error_messages}" %>
   </div>
 <% end %>
 
@@ -21,8 +21,8 @@
 <h3>Create New Link</h3>
 <%= form('/', :post) %>
 <% fieldset(:link) do |f| %>
-  <%= f.input(:name, {:value => flash[:name]}) %>
-  <%= f.input(:target, {:value => flash[:target]}) %>
+  <%= f.input(:name, {:value => @link_name }) %>
+  <%= f.input(:target, {:value => @link_target}) %>
 <% end %>
 <%= submit %>
 </div>
