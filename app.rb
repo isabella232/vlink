@@ -33,7 +33,9 @@ end
 
 get ('/:link') do
   link = Link.first(:name => params['link'])
-  return status 404 if link.nil?
+  session[:error_messages] = "/#{params['link']} does not exist. Create it?"
+  session[:link_name] = "#{params['link']}"
+  redirect :'/' if link.nil?
   link.used += 1
   link.save!
   redirect to(link.target.to_s)
