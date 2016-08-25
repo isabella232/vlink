@@ -3,7 +3,6 @@ require 'json'
 require 'pry'
 require 'sinatra'
 require 'sinatra/form_helpers'
-require 'sinatra/flash'
 require_relative 'vlink'
 
 enable :sessions
