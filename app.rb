@@ -5,7 +5,10 @@ require 'sinatra'
 require 'sinatra/form_helpers'
 require_relative 'vlink'
 
-enable :sessions
+#enable :sessions
+use Rack::Session::Cookie, :key => 'rack.session',
+                           :path => '/',
+                           :secret => '***REMOVED***'
 
 database_url = ENV['DATABASE_URL'] || 'postgres://localhost/vlink'
 DataMapper.setup(:default, database_url)
