@@ -20,9 +20,6 @@ configure do
   set :port, 8080
   set :environment, :production
   set :static_cache_control, [:public, max_age: 60 * 60 * 24 * 7]
-  file = File.new("#{settings.root}/log/#{settings.environment}.log", 'a+')
-  file.sync = true
-  use Rack::CommonLogger, file
 end
 
 get ('/') do
@@ -48,7 +45,6 @@ end
 
 post ('/search') do
   query = params['query']
-  puts "[DEBUG] Search for query: #{query}"
   @links = Link.all(:name.like => "%#{query}%")
   erb :search
 end
