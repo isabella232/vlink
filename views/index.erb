@@ -17,18 +17,39 @@
   </div>
 <% end %>
 
-<div>
-<h3>Create New Link</h3>
-<%= form('/', :post) %>
-<% fieldset(:link) do |f| %>
-  <%= f.input(:name, {:value => @link_name }) %>
-  <%= f.input(:target, {:value => @link_target}) %>
-<% end %>
-<%= submit %>
+<div class="eleven colums">
+  <form id="search", action="/search", method="POST">
+  <div class="row">
+    <div class="nine columns">
+      <input class="u-full-width" type="text", name="query", placeholder="gong-it-up">
+    </div>
+    <div class="two columns">
+      <input type="submit", value="Search">
+    </div>
+  </div>
+  </form>
 </div>
 
 <div>
-<h3>Current Links</h3>
+  <form id="create", action="/", method="POST">
+    <fieldset name="link"> 
+    <div class="row">
+      <div class="three columns">
+        <input class="u-full-width" type="text", name="name", placeholder="example">
+      </div>
+      <div class="six columns">
+        <input class="u-full-width" type="text", name="target", placeholder="http://example.com">
+      </div>
+      <div class="two columns">
+        <input type="submit", value="Create">
+      </div>
+    </div>
+    </fieldset>
+  </form>
+</div>
+
+<div><h3>Current Links</h3></div>
+<div class="eleven columns">
 <table class="u-full-width">
 <thead>
   <tr>
