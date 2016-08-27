@@ -32,13 +32,13 @@
 
 <div>
   <form id="create", action="/", method="POST">
-    <fieldset name="link"> 
+    <fieldset name="link">
     <div class="row">
       <div class="three columns">
-        <input class="u-full-width" type="text", name="name", placeholder="example">
+        <input class="u-full-width" type="text", name="name", value=<%="\"#{@link_name}\""%> placeholder="example">
       </div>
       <div class="six columns">
-        <input class="u-full-width" type="text", name="target", placeholder="http://example.com">
+        <input class="u-full-width" type="text" name="target" value=<%="\"#{@link_target}\""%> placeholder="http://example.com">
       </div>
       <div class="two columns">
         <input type="submit", value="Create">
