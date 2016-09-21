@@ -1,6 +1,7 @@
 require 'data_mapper'
 require 'json'
 require 'pry'
+require 'rack/ip_filter'
 require 'sinatra'
 require 'sinatra/form_helpers'
 require_relative 'vlink'
@@ -9,6 +10,8 @@ require_relative 'vlink'
 use Rack::Session::Cookie, :key => 'rack.session',
                            :path => '/',
                            :secret => '***REMOVED***'
+
+use Rack::IpFilter, IpFilter::WhiteList.new('***REMOVED***')
 
 database_url = ENV['DATABASE_URL'] || 'postgres://localhost/vlink'
 DataMapper.setup(:default, database_url)
