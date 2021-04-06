@@ -9,9 +9,9 @@ require_relative 'vlink'
 #enable :sessions
 use Rack::Session::Cookie, :key => 'rack.session',
                            :path => '/',
-                           :secret => '***REMOVED***'
+                           :secret => ENV['SECRET']
 
-use Rack::IpFilter, IpFilter::WhiteList.new('***REMOVED***')
+use Rack::IpFilter, IpFilter::WhiteList.new(ENV['ip_whitelist'])
 
 database_url = ENV['DATABASE_URL'] || 'postgres://localhost/vlink'
 DataMapper.setup(:default, database_url)
